@@ -1,0 +1,13 @@
+namespace Resume.resumedb;
+
+context resumecds {
+    entity subject {
+        key sub_area : String(100);
+    };
+
+    entity area {
+        key name     : String(100);
+            partof   : association[0..1] to subject;
+            doc_name : String(100);
+    };
+};

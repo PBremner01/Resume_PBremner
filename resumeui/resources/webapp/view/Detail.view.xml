@@ -1,0 +1,47 @@
+<mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns:footerbar="sap.ushell.ui.footerbar" xmlns:action="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" controllerName="resumedb.controller.Detail">
+	<semantic:DetailPage id="page" navButtonPress="onNavBack" showNavButton="{device>/system/phone}" title="Philip Bremner" busy="{detailView>/busy}" busyIndicatorDelay="{detailView>/delay}" titleLevel="H1">
+		<semantic:content>
+			<Label text="On Premise - HANA XSA Fiori Master-Detail" width="100%" id="lbl_header" design="Bold" textAlign="Center"/>
+			<ObjectHeader id="objectHeader" title="{sub_area}" icon="sap-icon://fx"/>
+			<HBox width="50%" id="__hbox0" alignContent="Center" justifyContent="true" alignItems="Center" displayInline="true" renderType="Bare">
+				<items>
+					<Image width="140px" height="140px" float="right" id="img_Phil" src="images/PhilB.png"/>
+					<Button xmlns="sap.m" text="Contact" icon="sap-icon://account" width="100px" id="btn_Contact" action:wiring="\{\}" press="DisplayContactInfo" tooltip="Display Contact Information PDF"/>
+					<Button xmlns="sap.m" text="Resume" icon="sap-icon://attachment" width="100px" id="btn_Resume" action:wiring="\{\}" press="DisplayResume" tooltip="Display Resume PDF"/>
+				</items>
+			</HBox>
+			<Table id="lineItemsList" width="auto" items="{Subjects}" updateFinished="onListUpdateFinished" noDataText="{i18n>detailLineItemTableNoDataText}" busyIndicatorDelay="{detailView>/lineItemTableDelay}" class="sapUiResponsiveMargin">
+				<headerToolbar>
+					<Toolbar id="lineItemsToolbar">
+						<Title id="lineItemsHeader" text="Areas: "/>
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column>
+						<Text text="{i18n>detailLineItemTableIDColumn}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Right">
+						<Text text="{i18n>detailLineItemTableUnitNumberColumn}"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem type="Navigation" press="onSelectionChange" selected="true">
+						<cells>
+							<ObjectIdentifier text="{name}"/>
+							<ObjectIdentifier text="{doc_name}" visible="false"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</semantic:content>
+		<semantic:sendEmailAction>
+			<semantic:SendEmailAction id="shareEmail" press="onShareEmailPress"/>
+		</semantic:sendEmailAction>
+		<semantic:shareInJamAction>
+			<semantic:ShareInJamAction id="shareInJam" visible="{FLP>/isShareInJamActive}" press="onShareInJamPress"/>
+		</semantic:shareInJamAction>
+		<semantic:saveAsTileAction>
+			<footerbar:AddBookmarkButton id="shareTile" title="{detailView>/saveAsTileTitle}"/>
+		</semantic:saveAsTileAction>
+	</semantic:DetailPage>
+</mvc:View>

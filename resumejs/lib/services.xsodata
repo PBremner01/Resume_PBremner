@@ -1,0 +1,5 @@
+service  {
+   "Resume.resumedb::resumecds.subject" as "Subject" navigates ("Subjects" as "Subjects");
+   "Resume.resumedb::resumecds.area" as "Area";
+   association "Subjects" principal "Subject"("sub_area") multiplicity "1" dependent "Area"("partof.sub_area") multiplicity "*";
+}
